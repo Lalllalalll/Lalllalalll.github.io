@@ -1,0 +1,632 @@
+/* ========================================
+   ОБЩИЕ НАСТРОЙКИ
+   ======================================== */
+
+/* Подключаем пиксельный шрифт */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #5DCEB8 0%, #8ED4C5 30%, #B8B0D8 70%, #9B8EC4 100%);
+    font-family: 'Montserrat', Arial, sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   ОСНОВНЫЕ БЛОКИ
+   ======================================== */
+
+.main, .kart, .lent, .vid {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    padding: 35px 40px;
+    border-radius: 25px;
+    margin: 30px auto;
+    max-width: 900px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15),
+                inset 0 0 0 3px rgba(255, 140, 66, 0.3);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid rgba(255, 140, 66, 0.3);
+}
+
+.main:hover, .kart:hover, .lent:hover, .vid:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2),
+                inset 0 0 0 3px rgba(255, 140, 66, 0.6);
+}
+
+/* ========================================
+   ПАДАЮЩИЕ МЯЧИ (PNG)
+   ======================================== */
+
+.ball {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: fall linear infinite;
+    will-change: transform;
+}
+
+@keyframes fall {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.8;
+    }
+    25% {
+        transform: translate(var(--swing, 0px), 25vh) rotate(90deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translate(calc(var(--swing, 0px) * -0.5), 50vh) rotate(180deg);
+        opacity: 0.9;
+    }
+    75% {
+        transform: translate(var(--swing, 0px), 75vh) rotate(270deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(calc(var(--swing, 0px) * 0.3), 110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   ЗАГОЛОВКИ
+   ======================================== */
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2.2em;
+    text-align: center;
+    color: #8B0000;
+    text-shadow: 
+        4px 4px 0 #FFD700,
+        6px 6px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    word-wrap: break-word;
+    animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    0% { text-shadow: 4px 4px 0 #FFD700, 6px 6px 0 rgba(0,0,0,0.2); }
+    100% { text-shadow: 4px 4px 0 #FF6B35, 8px 8px 20px rgba(255, 107, 53, 0.4); }
+}
+
+h2 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5em;
+    color: #8B0000;
+    text-shadow: 2px 2px 0 #FFD700;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1em;
+    color: #FF6B35;
+    margin: 20px 0 15px 0;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+/* ========================================
+   ТЕКСТ
+   ======================================== */
+
+p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #2C3E50;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.main p {
+    text-align: center;
+    font-size: 1.15em;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   СПИСОК ХАРАКТЕРИСТИК (игровой стиль)
+   ======================================== */
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+ul li {
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.1), rgba(255, 160, 122, 0.1));
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 12px;
+    border-left: 5px solid #FF6B35;
+    font-size: 1em;
+    color: #2C3E50;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+ul li:hover {
+    transform: translateX(10px);
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.2), rgba(255, 160, 122, 0.2));
+    border-left-color: #FFD700;
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.2);
+}
+
+ul li::before {
+    content: "▸";
+    color: #FF6B35;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* ========================================
+   КНОПКИ И ССЫЛКИ (игровой стиль)
+   ======================================== */
+
+a, .btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #FF6B35, #FF4500);
+    color: #FFFFFF;
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1em;
+    border: 3px solid #8B0000;
+    box-shadow: 0 5px 0 #8B0000;
+    transition: all 0.15s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
+    cursor: pointer;
+    position: relative;
+    margin: 10px 0;
+}
+
+a:hover, .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 #8B0000;
+    background: linear-gradient(135deg, #FF4500, #FF6B35);
+}
+
+a:active, .btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 2px 0 #8B0000;
+}
+
+/* ========================================
+   КНОПКА ДЛЯ ВИДЕО (особая)
+   ======================================== */
+
+#edit-board {
+    display: inline-block;
+    background: linear-gradient(135deg, #FFD700, #F9A825);
+    color: #8B0000;
+    padding: 20px 45px;
+    border-radius: 30px;
+    border: 4px solid #8B0000;
+    box-shadow: 0 6px 0 #8B0000;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+#edit-board:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 0 #8B0000;
+    background: linear-gradient(135deg, #FFE082, #FFD700);
+}
+
+#edit-board:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px 0 #8B0000;
+}
+
+.pppp {
+    text-align: center;
+    margin: 20px 0 10px 0;
+}
+
+/* ========================================
+   ЛИНИЯ РАЗДЕЛИТЕЛЯ
+   ======================================== */
+
+hr {
+    border: none;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #FF6B35, #FFD700, #FF6B35, transparent);
+    margin: 10px auto;
+    max-width: 900px;
+    border-radius: 10px;
+    opacity: 0.5;
+}
+
+/* ========================================
+   АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ
+   ======================================== */
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .main, .kart, .lent, .vid {
+        padding: 20px 20px;
+        margin: 20px 0;
+        border-radius: 15px;
+    }
+    
+    h1 {
+        font-size: 1.4em;
+        letter-spacing: 1px;
+    }
+    
+    h2 {
+        font-size: 1.1em;
+    }
+    
+    h3 {
+        font-size: 0.85em;
+    }
+    
+    p {
+        font-size: 0.95em;
+        line-height: 1.6;
+    }
+    
+    ul li {
+        font-size: 0.9em;
+        padding: 10px 15px;
+    }
+    
+    a, .btn {
+        padding: 12px 25px;
+        font-size: 0.7em;
+        width: 100%;
+        text-align: center;
+    }
+    
+    #edit-board {
+        padding: 15px 25px;
+        font-size: 0.8em;
+        width: 100%;
+    }
+    
+    .ball {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1em;
+    }
+    
+    .main, .kart, .lent, .vid {
+        padding: 15px;
+    }
+    
+    ul li {
+        font-size: 0.8em;
+        padding: 8px 12px;
+    }
+}
+
+/* ========================================
+   ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ
+   ======================================== */
+
+/* Свечение для заголовков */
+h1, h2 {
+    animation: shimmer 3s ease-in-out infinite alternate;
+}
+
+@keyframes shimmer {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(1.05); }
+}
+
+/* Красивая рамка для фото */
+.kart img {
+    display: block;
+    margin: 0 auto 15px auto;
+    border-radius: 20px;
+    border: 5px solid #FF6B35;
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+    max-width: 100%;
+    height: auto;
+}
+
+.kart img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(54, 44, 40, 0.5);
+    border-color: #FFD700;
+}
+
+/* Стиль для ссылок внутри блоков */
+.kart a, .lent a {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Центрирование кнопок */
+.kart, .lent {
+    text-align: center;
+}
+
+.kart ul {
+    text-align: left;
+}
+
+/* ========================================
+   СТИЛИ ДЛЯ ЛЕНТЫ ЖИЗНИ (галерея)
+   ======================================== */
+
+/* Эти стили пригодятся, когда добавите фото в ленту */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.photo-item {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 10px;
+    border: 3px solid #FF6B35;
+    transition: all 0.3s ease;
+    max-width: 200px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.photo-item:hover {
+    transform: scale(1.05) rotate(-1deg);
+    border-color: #FFD700;
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+}
+
+.photo-item img {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.photo-item p {
+    font-size: 0.85em;
+    font-style: italic;
+    color: #555;
+    text-align: center;
+    margin: 10px 0 5px 0;
+    font-weight: 500;
+}
+
+/* ========================================
+   АНИМАЦИЯ ПОЯВЛЕНИЯ БЛОКОВ
+   ======================================== */
+
+.main, .kart, .lent, .vid {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.main { animation-delay: 0.1s; }
+.kart { animation-delay: 0.3s; }
+.lent { animation-delay: 0.5s; }
+.vid { animation-delay: 0.7s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   СКРОЛЛ (для красоты)
+   ======================================== */
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #FFA07A;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #FF6B35, #FF4500);
+    border-radius: 10px;
+    border: 2px solid #8B0000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #FF4500, #8B0000);
+}
+
+/* ========================================
+   ЛЕНТА ЖИЗНИ - ГАЛЕРЕЯ
+   ======================================== */
+
+.lent {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    padding: 30px 35px;
+    border-radius: 25px;
+    margin: 30px auto;
+    max-width: 1100px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    position: relative;
+    z-index: 1;
+}
+
+.lent-intro {
+    text-align: center;
+    font-size: 1.05em;
+    color: #2C3E50;
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+/* ===== КАТЕГОРИИ ===== */
+.gallery-category {
+    margin-bottom: 35px;
+}
+
+.gallery-category:last-child {
+    margin-bottom: 0;
+}
+
+.gallery-category h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #4A1942;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid rgba(255, 107, 53, 0.12);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ===== СЕТКА ФОТО ===== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 14px;
+}
+
+/* ===== КАРТОЧКА ФОТО ===== */
+.photo-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+}
+
+.photo-card:hover {
+    transform: translateY(-4px);
+    border-color: #FFD700;
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.12);
+}
+
+.photo-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    background: #f5f5f5;
+}
+
+.photo-card .caption {
+    font-size: 0.8em;
+    font-style: italic;
+    color: #555;
+    text-align: center;
+    margin: 8px 4px 4px;
+    font-weight: 400;
+    line-height: 1.4;
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== АДАПТАЦИЯ ===== */
+@media (max-width: 768px) {
+    .lent {
+        padding: 20px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+    }
+
+    .photo-card img {
+        aspect-ratio: 1 / 1;
+    }
+
+    .photo-card .caption {
+        font-size: 0.7em;
+        min-height: 28px;
+    }
+
+    .gallery-category h3 {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 480px) {
+    .lent {
+        padding: 12px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 6px;
+    }
+
+    .photo-card {
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    .photo-card img {
+        border-radius: 6px;
+    }
+
+    .photo-card .caption {
+        font-size: 0.6em;
+        min-height: 22px;
+        margin: 4px 2px 2px;
+    }
+
+    .gallery-category h3 {
+        font-size: 0.8em;
+        margin-bottom: 8px;
+    }
+}

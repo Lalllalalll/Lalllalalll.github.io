@@ -1,0 +1,471 @@
+/* ========================================
+   СТИЛИ ДЛЯ СТРАНИЦЫ С ПИСЬМОМ
+   Холод. Владивосток. Конец.
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0A0E1A;
+    background-image: 
+        radial-gradient(ellipse at 30% 20%, rgba(30, 60, 120, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 80%, rgba(20, 50, 100, 0.10) 0%, transparent 50%),
+        linear-gradient(180deg, #0A0E1A 0%, #111827 50%, #0A0E1A 100%);
+    font-family: 'Inter', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    position: relative;
+}
+
+/* ========================================
+   ФОН — лёд, холод, пустота
+   ======================================== */
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse at 80% 20%, rgba(100, 150, 255, 0.02) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(60, 100, 200, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ========================================
+   КОНТЕЙНЕР ПИСЬМА — холодный, отстранённый
+   ======================================== */
+
+.letter-container {
+    max-width: 700px;
+    width: 100%;
+    background: #141B2D;
+    padding: 55px 60px 50px;
+    border-radius: 0;
+    box-shadow: 
+        0 40px 100px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(60, 100, 180, 0.10),
+        inset 0 1px 0 rgba(100, 150, 255, 0.03);
+    border-left: 4px solid rgba(60, 120, 200, 0.20);
+    border-bottom: 2px solid rgba(60, 120, 200, 0.10);
+    position: relative;
+    opacity: 0;
+    animation: letterReveal 1.2s ease-out forwards;
+    z-index: 1;
+}
+
+@keyframes letterReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ========================================
+   ЗАГОЛОВОК
+   ======================================== */
+
+.letter-container h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 2.2em;
+    text-align: center;
+    color: #D1D9E6;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(60, 100, 180, 0.08);
+    position: relative;
+}
+
+.letter-container h1 .sub {
+    display: block;
+    font-size: 0.3em;
+    font-weight: 300;
+    letter-spacing: 10px;
+    color: #4A6A8F;
+    margin-top: 10px;
+    text-transform: uppercase;
+    opacity: 0.4;
+}
+
+.letter-container h1 .sub small {
+    opacity: 0.3;
+    font-size: 0.6em;
+    letter-spacing: 6px;
+    font-weight: 200;
+}
+
+/* ========================================
+   РАЗДЕЛИТЕЛЬ — холодный, тонкий
+   ======================================== */
+
+.letter-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(60, 120, 200, 0.10), transparent);
+    margin: 25px 0 30px;
+    position: relative;
+}
+
+.letter-divider::after {
+    content: '◆';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(60, 120, 200, 0.05);
+    font-size: 10px;
+    background: #141B2D;
+    padding: 0 15px;
+}
+
+/* ========================================
+   ТЕКСТ ПИСЬМА
+   ======================================== */
+
+.letter-text {
+    font-size: 1em;
+    line-height: 2.2;
+    color: #A8B8CC;
+    font-weight: 300;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+}
+
+.letter-text p {
+    margin-bottom: 18px;
+    text-indent: 30px;
+    opacity: 0;
+    animation: textReveal 0.5s ease-out forwards;
+}
+
+.letter-text p:nth-child(1) { animation-delay: 0.2s; }
+.letter-text p:nth-child(2) { animation-delay: 0.5s; }
+.letter-text p:nth-child(3) { animation-delay: 0.8s; }
+.letter-text p:nth-child(4) { animation-delay: 1.1s; }
+.letter-text p:nth-child(5) { animation-delay: 1.4s; }
+.letter-text p:nth-child(6) { animation-delay: 1.7s; }
+.letter-text p:nth-child(7) { animation-delay: 2.0s; }
+
+@keyframes textReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.letter-text .greeting {
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #D1D9E6;
+    text-indent: 0;
+    letter-spacing: 1px;
+}
+
+.letter-text .greeting small {
+    font-weight: 300;
+    font-size: 0.6em;
+    color: #4A6A8F;
+    opacity: 0.4;
+    display: block;
+    margin-top: 4px;
+    letter-spacing: 3px;
+}
+
+.letter-text .fade {
+    color: #4A6A8F;
+    opacity: 0.3;
+    font-style: italic;
+    font-weight: 200;
+}
+
+.letter-text .signature {
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 1.2em;
+    color: #D1D9E6;
+    margin-top: 30px;
+    text-indent: 0;
+    letter-spacing: 3px;
+    border-top: 1px solid rgba(60, 100, 180, 0.06);
+    padding-top: 25px;
+    opacity: 0.5;
+}
+
+.letter-text .signature small {
+    display: block;
+    font-size: 0.4em;
+    font-weight: 300;
+    color: #4A6A8F;
+    opacity: 0.3;
+    letter-spacing: 5px;
+    margin-top: 6px;
+    font-style: normal;
+}
+
+/* ========================================
+   ЛЁД — осколки, которые не склеить
+   ======================================== */
+
+.letter-container .ice {
+    position: absolute;
+    pointer-events: none;
+    color: rgba(60, 120, 200, 0.02);
+    font-size: 30px;
+    font-weight: 100;
+    font-family: 'Inter', sans-serif;
+}
+
+.letter-container .ice-1 {
+    top: 10%;
+    left: -5px;
+    transform: rotate(-15deg);
+    font-size: 40px;
+}
+
+.letter-container .ice-2 {
+    bottom: 15%;
+    right: -5px;
+    transform: rotate(20deg);
+    font-size: 35px;
+}
+
+/* ========================================
+   ХОЛОДНЫЕ СИМВОЛЫ
+   ======================================== */
+
+.letter-container .symbols {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    font-size: 9px;
+    letter-spacing: 10px;
+    color: rgba(60, 120, 200, 0.02);
+    font-weight: 200;
+    text-transform: uppercase;
+    pointer-events: none;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ========================================
+   КНОПКА НАЗАД
+   ======================================== */
+
+.back-button {
+    display: inline-block;
+    background: transparent;
+    color: #4A6A8F;
+    padding: 12px 35px;
+    border-radius: 0;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 0.65em;
+    border: 1px solid rgba(60, 120, 200, 0.10);
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-top: 20px;
+    background: transparent;
+}
+
+.back-button:hover {
+    background: rgba(60, 120, 200, 0.05);
+    color: #D1D9E6;
+    border-color: rgba(60, 120, 200, 0.20);
+    letter-spacing: 6px;
+}
+
+.back-button::before {
+    content: '←';
+    margin-right: 10px;
+    opacity: 0.2;
+    transition: opacity 0.3s ease;
+}
+
+.back-button:hover::before {
+    opacity: 0.6;
+}
+
+.button-wrapper {
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid rgba(60, 100, 180, 0.04);
+    padding-top: 25px;
+}
+
+/* ========================================
+   АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ
+   ======================================== */
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+        align-items: flex-start;
+        padding-top: 30px;
+    }
+
+    .letter-container {
+        padding: 35px 25px 30px;
+        border-left-width: 3px;
+    }
+
+    .letter-container .map-fragment {
+        width: 25%;
+        opacity: 0.15;
+    }
+
+    .letter-container .map-fragment::before {
+        font-size: 6px;
+        letter-spacing: 4px;
+    }
+
+    .letter-container .ice-1 {
+        font-size: 28px;
+    }
+
+    .letter-container .ice-2 {
+        font-size: 24px;
+    }
+
+    .letter-container h1 {
+        font-size: 1.5em;
+        letter-spacing: 4px;
+    }
+
+    .letter-container h1 .sub {
+        font-size: 0.3em;
+        letter-spacing: 6px;
+    }
+
+    .letter-text {
+        font-size: 0.9em;
+        line-height: 2;
+    }
+
+    .letter-text .signature {
+        font-size: 1em;
+    }
+
+    .back-button {
+        font-size: 0.55em;
+        padding: 10px 20px;
+        letter-spacing: 3px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .letter-container .symbols {
+        display: none;
+    }
+
+    .letter-container .seagull {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .letter-container {
+        padding: 20px 15px 25px;
+        border-left-width: 2px;
+    }
+
+    .letter-container h1 {
+        font-size: 1.2em;
+        letter-spacing: 3px;
+    }
+
+    .letter-container h1 .sub {
+        font-size: 0.25em;
+        letter-spacing: 4px;
+    }
+
+    .letter-text {
+        font-size: 0.8em;
+        line-height: 1.9;
+    }
+
+    .letter-text p {
+        text-indent: 15px;
+        margin-bottom: 14px;
+    }
+
+    .letter-text .signature {
+        font-size: 0.85em;
+        padding-top: 18px;
+        margin-top: 20px;
+    }
+
+    .letter-container .map-fragment {
+        width: 20%;
+        opacity: 0.08;
+    }
+
+    .letter-container .map-fragment::before {
+        font-size: 5px;
+        letter-spacing: 3px;
+    }
+
+    .letter-container .map-fragment .distance {
+        font-size: 5px;
+        letter-spacing: 2px;
+    }
+
+    .letter-container .ice-1 {
+        font-size: 20px;
+    }
+
+    .letter-container .ice-2 {
+        font-size: 18px;
+    }
+
+    .back-button {
+        font-size: 0.5em;
+        padding: 8px 15px;
+        letter-spacing: 2px;
+    }
+}
+
+/* ========================================
+   СКРОЛЛ
+   ======================================== */
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0A0E1A;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(60, 120, 200, 0.20);
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(60, 120, 200, 0.30);
+}

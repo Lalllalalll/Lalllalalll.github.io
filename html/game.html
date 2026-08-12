@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Выиграй их всех!</title>
+    <link rel="stylesheet" href="../css/game.css">
+</head>
+<body>
+    
+    <div class="game-wrapper">
+        <h1>⚽ ЗАБЕЙ 3 ГОЛА!</h1>
+        
+        <div class="game-status">
+            <div class="statuc">Голы: <span id="goalD">●○○</span></div>
+            <div class="statuc">Попытки: <span id="Poputka">0/5</span></div>
+        </div>
+        
+        <div class="game-field" id="gameField">
+            
+            <img src="../game/fon.png" alt="Поле" class="field-bg">
+            
+            <div class="goal">
+                <img src="../game/vorota1.jpg" alt="Ворота">
+            </div>
+            
+            <div class="keeper center" id="keeper">
+                <img src="../game/vratar.png" alt="Вратарь" id="keeperImg">
+            </div>
+            
+            <div class="ball" id="ball">
+                <img src="../game/myach.png" alt="Мяч">
+            </div>
+            
+            <div class="passer" id="passer">
+                <img src="../game/Tomafoot.png" alt="Толмасова" id="passerImg">
+            </div>
+            
+            <div class="zone zone-left" onclick="shoot('left')"></div>
+            <div class="zone zone-center" onclick="shoot('center')"></div>
+            <div class="zone zone-right" onclick="shoot('right')"></div>
+        
+            <div class="game-overlay" id="gameOverlay">
+                <div class="icon" id="overlayIcon">🏆</div>
+                <h2 id="overlayTitle">ПОБЕДА!!!</h2>
+                <p id="overlayText">Толмасова как всегда всех победила!</p>
+                <p class="stats" id="overlayStatus">Голов: 3 | Попыток: 5</p>
+                <div class="overlay-buttons">
+                    <button onclick="startGame()" class="btn">🔄 Сыграть ещё</button>
+                    <a href="mai.html" class="btn">Назад</a>
+                </div>
+            </div>
+            
+        </div>
+        
+        <p class="game-hint">КЛИКНИ ПО ВОРОТАМ, ЧТОБЫ УДАРИТЬ</p>
+        
+        <div class="game-buttons">
+            <button onclick="startGame()" class="btn">🔄 Сыграть ещё</button>
+            <a href="mai.html" class="btn">Назад</a>
+        </div>
+    </div>
+    
+    <script src="../game.js"></script>
+</body>
+</html>
