@@ -1,8 +1,8 @@
 function createBalls() {
     const ballImages = [
-        '../images/football.png',
-        '../images/basketball.png',
-        '../images/tennis.png'
+        '../im15/football.png',
+        '../im15/basketball.png',
+        '../im15/tennis.png'
     ];
     
     const cols = 5;
