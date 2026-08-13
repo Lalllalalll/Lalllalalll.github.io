@@ -33,14 +33,14 @@
                     display: inline-block;
                     width: 0;
                     height: 0;
-                    border-left: 20px solid transparent;
-                    border-right: 20px solid transparent;
-                    border-bottom: 35px solid rgba(60, 120, 200, 0.3);
+                    border-top: 20px solid transparent;
+                    border-bottom: 20px solid transparent;
+                    border-left: 35px solid rgba(60, 120, 200, 0.3);
                     cursor: pointer;
                     transition: all 0.3s ease;
                     filter: drop-shadow(0 0 15px rgba(60, 120, 200, 0.1));
                     margin: 10px 0;
-                    " onmouseover="this.style.borderBottomColor='rgba(60, 120, 200, 0.6)'" onmouseout="this.style.borderBottomColor='rgba(60, 120, 200, 0.3)'">
+                    " onmouseover="this.style.borderLeftColor='rgba(60, 120, 200, 0.6)'" onmouseout="this.style.borderLeftColor='rgba(60, 120, 200, 0.3)'">
                     
                     </div>
                 <p style="color: rgba(60, 120, 200, 0.2); font-size: 0.6em; letter-spacing: 3px; margin-top: 5px;">
@@ -62,18 +62,18 @@
                         audio.pause();
                         audio.currentTime = 0;
                         isPlaying = false;
-                        triangle.style.borderBottomColor = 'rgba(60, 120, 200, 0.3)';
+                        triangle.style.borderLeftColor = 'rgba(60, 120, 200, 0.3)';
                     } else {
                         audio.play();
                         isPlaying = true;
-                        triangle.style.borderBottomColor = 'rgba(255, 215, 0, 0.6)';
+                        triangle.style.borderLeftColor = 'rgba(255, 215, 0, 0.6)';
                     }
                 }
                 
                 // Когда песня закончится — сбрасываем
                 audio.addEventListener('ended', function() {
                     isPlaying = false;
-                    triangle.style.borderBottomColor = 'rgba(60, 120, 200, 0.3)';
+                    triangle.style.borderLeftColor = 'rgba(60, 120, 200, 0.3)';
                 });
             </script>
             <div class="letter-divider"></div>
