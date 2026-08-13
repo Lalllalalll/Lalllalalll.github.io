@@ -15,6 +15,50 @@
     это человек с богатым внутренним миром. Мы провели расследование и найшли все её суперсилы.</p>
     <p>P.s.: их очень много. А слабых сторон нет.</p>
     </header>
+    
+    <!-- ===== МУЗЫКА НА ГЛАВНОЙ (БЕЗ ОСТАНОВКИ) ===== -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 999; text-align: center;">
+    <!-- ТРЕУГОЛЬНИК НАПРАВО -->
+        <div onclick="toggleMainMusic()" style="
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 25px solid rgba(255, 215, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.1));
+            " onmouseover="this.style.borderLeftColor='rgba(255, 215, 0, 0.6)'" onmouseout="this.style.borderLeftColor='rgba(255, 215, 0, 0.3)'">
+            
+        </div>
+        <p style="color: rgba(255, 215, 0, 0.2); font-size: 0.5em; letter-spacing: 2px; margin-top: 5px;">
+            ♪
+        </p>
+        
+        <!-- СКРЫТЫЙ ПЛЕЕР С ЗАЦИКЛИВАНИЕМ -->
+        <audio id="mainAudio" loop style="display: none;">
+            <source src="songs/Barbarika_-_S_Dnem_Rozhdeniya_73513282.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <script>
+        let isMainPlaying = false;
+        const mainAudio = document.getElementById('mainAudio');
+        const mainTriangle = document.querySelector('[onclick="toggleMainMusic()"]');
+    
+        function toggleMainMusic() {
+            if (isMainPlaying) {
+                mainAudio.pause();
+                isMainPlaying = false;
+                mainTriangle.style.borderLeftColor = 'rgba(255, 215, 0, 0.3)';
+            } else {
+                mainAudio.play();
+                isMainPlaying = true;
+                mainTriangle.style.borderLeftColor = 'rgba(255, 215, 0, 0.8)';
+            }
+        }
+    </script>
+    
     <hr>
     <header class="kart">
         <h2>Карточка персонажа</h2>
@@ -921,48 +965,5 @@
         <p>Ведь ты - главный <strong>герой этого дня</strong>.</p>
     </div>
     <script src="../app.js"></script>
-
-    <!-- ===== МУЗЫКА НА ГЛАВНОЙ (БЕЗ ОСТАНОВКИ) ===== -->
-    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 999; text-align: center;">
-    <!-- ТРЕУГОЛЬНИК НАПРАВО -->
-        <div onclick="toggleMainMusic()" style="
-            display: inline-block;
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-left: 25px solid rgba(255, 215, 0, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.1));
-            " onmouseover="this.style.borderLeftColor='rgba(255, 215, 0, 0.6)'" onmouseout="this.style.borderLeftColor='rgba(255, 215, 0, 0.3)'">
-            
-        </div>
-        <p style="color: rgba(255, 215, 0, 0.2); font-size: 0.5em; letter-spacing: 2px; margin-top: 5px;">
-            ♪
-        </p>
-        
-        <!-- СКРЫТЫЙ ПЛЕЕР С ЗАЦИКЛИВАНИЕМ -->
-        <audio id="mainAudio" loop style="display: none;">
-            <source src="songs/Barbarika_-_S_Dnem_Rozhdeniya_73513282.mp3" type="audio/mpeg">
-        </audio>
-    </div>
-    <script>
-        let isMainPlaying = false;
-        const mainAudio = document.getElementById('mainAudio');
-        const mainTriangle = document.querySelector('[onclick="toggleMainMusic()"]');
-    
-        function toggleMainMusic() {
-            if (isMainPlaying) {
-                mainAudio.pause();
-                isMainPlaying = false;
-                mainTriangle.style.borderLeftColor = 'rgba(255, 215, 0, 0.3)';
-            } else {
-                mainAudio.play();
-                isMainPlaying = true;
-                mainTriangle.style.borderLeftColor = 'rgba(255, 215, 0, 0.8)';
-            }
-        }
-    </script>
 </body>
 </html>
