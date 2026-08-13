@@ -16,32 +16,34 @@
     <p>P.s.: их очень много. А слабых сторон нет.</p>
     </header>
     
-    <!-- ===== МУЗЫКА НА ГЛАВНОЙ (БОЛЬШАЯ КНОПКА) ===== -->
+    <!-- ===== МУЗЫКА (БОЛЬШАЯ ЗОЛОТАЯ КНОПКА) ===== -->
     <div style="position: fixed; bottom: 30px; right: 30px; z-index: 999; text-align: center;">
-        <!-- КРУГЛАЯ КНОПКА -->
+    <!-- КРУГЛАЯ КНОПКА -->
         <div onclick="toggleMainMusic()" style="
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.05));
+            border: 3px solid #FFD700;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.05);
-            color: rgba(255, 215, 0, 0.5);
+            font-size: 36px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.15), inset 0 0 30px rgba(255, 215, 0, 0.05);
+            color: #FFD700;
             user-select: none;
-            " onmouseover="this.style.background='rgba(255,215,0,0.2)'; this.style.borderColor='rgba(255,215,0,0.6)'; this.style.boxShadow='0 0 50px rgba(255,215,0,0.15)'; this.style.transform='scale(1.05)'" 
-            onmouseout="this.style.background='rgba(255,215,0,0.1)'; this.style.borderColor='rgba(255,215,0,0.3)'; this.style.boxShadow='0 0 30px rgba(255,215,0,0.05)'; this.style.transform='scale(1)'">
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        " onmouseover="this.style.background='radial-gradient(circle, rgba(255,215,0,0.4), rgba(255,215,0,0.1))'; this.style.boxShadow='0 0 80px rgba(255,215,0,0.3), inset 0 0 40px rgba(255,215,0,0.1)'; this.style.transform='scale(1.08)'" 
+        onmouseout="this.style.background='radial-gradient(circle, rgba(255,215,0,0.25), rgba(255,215,0,0.05))'; this.style.boxShadow='0 0 50px rgba(255,215,0,0.15), inset 0 0 30px rgba(255,215,0,0.05)'; this.style.transform='scale(1)'">
             <span id="musicIcon">▶</span>
         </div>
-        <!-- ПОДПИСЬ -->
-        <p style="color: rgba(255, 215, 0, 0.15); font-size: 0.5em; letter-spacing: 3px; margin-top: 8px; text-transform: uppercase;">
-            ♪ Музыка
+    
+    <!-- ПОДПИСЬ -->
+        <p style="color: rgba(255, 215, 0, 0.2); font-size: 0.55em; letter-spacing: 4px; margin-top: 10px; text-transform: uppercase; font-weight: 300;">
+            ♪ Включи музыку
         </p>
     
     <!-- ПЛЕЕР -->
@@ -49,7 +51,6 @@
             <source src="../songs/Barbarika_-_S_Dnem_Rozhdeniya_73513282.mp3" type="audio/mpeg">
         </audio>
     </div>
-    
     <script>
         let isMainPlaying = false;
         const mainAudio = document.getElementById('mainAudio');
@@ -61,23 +62,21 @@
                 mainAudio.pause();
                 isMainPlaying = false;
                 musicIcon.textContent = '▶';
-                mainButton.style.background = 'rgba(255, 215, 0, 0.1)';
-                mainButton.style.borderColor = 'rgba(255, 215, 0, 0.3)';
-                mainButton.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.05)';
+                mainButton.style.background = 'radial-gradient(circle, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.05))';
+                mainButton.style.borderColor = '#FFD700';
+                mainButton.style.boxShadow = '0 0 50px rgba(255, 215, 0, 0.15), inset 0 0 30px rgba(255, 215, 0, 0.05)';
+                mainButton.style.color = '#FFD700';
             } else {
-                // ОБРАБАТЫВАЕМ PROMISE, ЧТОБЫ ИЗБЕЖАТЬ ОШИБКИ
                 const playPromise = mainAudio.play();
                 if (playPromise !== undefined) {
                     playPromise.then(() => {
                     isMainPlaying = true;
                     musicIcon.textContent = '⏸';
-                    mainButton.style.background = 'rgba(255, 215, 0, 0.2)';
-                    mainButton.style.borderColor = 'rgba(255, 215, 0, 0.6)';
-                    mainButton.style.boxShadow = '0 0 60px rgba(255, 215, 0, 0.2)';
-                    }).catch(() => {
-                        // Если автозапуск заблокирован — ничего не делаем
-                        console.log('Автозапуск заблокирован');
-                    });
+                    mainButton.style.background = 'radial-gradient(circle, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.15))';
+                    mainButton.style.borderColor = '#FFD700';
+                    mainButton.style.boxShadow = '0 0 80px rgba(255, 215, 0, 0.35), inset 0 0 50px rgba(255, 215, 0, 0.1)';
+                    mainButton.style.color = '#FFD700';
+                    }).catch(() => {});
                 }
             }
         }
