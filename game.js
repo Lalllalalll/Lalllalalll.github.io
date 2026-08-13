@@ -144,7 +144,7 @@ function shoot(direction) {
     
     // ===== 60% ШАНС НА ГОЛ =====
     const randomChance = Math.random();
-    const isGoal = randomChance < 0.40; // 60% гол, 40% сейв
+    const isGoal = randomChance < 0.50; // 60% гол, 40% сейв
     
     // Вратарь двигается для анимации
     let keeperDir;
