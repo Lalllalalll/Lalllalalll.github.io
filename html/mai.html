@@ -65,12 +65,20 @@
                 mainButton.style.borderColor = 'rgba(255, 215, 0, 0.3)';
                 mainButton.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.05)';
             } else {
-                mainAudio.play();
-                isMainPlaying = true;
-                musicIcon.textContent = '⏸';
-                mainButton.style.background = 'rgba(255, 215, 0, 0.2)';
-                mainButton.style.borderColor = 'rgba(255, 215, 0, 0.6)';
-                mainButton.style.boxShadow = '0 0 60px rgba(255, 215, 0, 0.2)';
+                // ОБРАБАТЫВАЕМ PROMISE, ЧТОБЫ ИЗБЕЖАТЬ ОШИБКИ
+                const playPromise = mainAudio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                    isMainPlaying = true;
+                    musicIcon.textContent = '⏸';
+                    mainButton.style.background = 'rgba(255, 215, 0, 0.2)';
+                    mainButton.style.borderColor = 'rgba(255, 215, 0, 0.6)';
+                    mainButton.style.boxShadow = '0 0 60px rgba(255, 215, 0, 0.2)';
+                    }).catch(() => {
+                        // Если автозапуск заблокирован — ничего не делаем
+                        console.log('Автозапуск заблокирован');
+                    });
+                }
             }
         }
     </script>
