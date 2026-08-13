@@ -26,52 +26,55 @@
             <div class="symbols">✧ ✦ ✧</div>
             <h1>Прощальное письмо<span class="sub">Письмо, которого быть не должно</span></h1>
             
-            <!-- ===== МУЗЫКА В НАЧАЛЕ ПИСЬМА ===== -->
-            <div style="text-align: center; margin: 20px 0 30px 0; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 15px; border: 1px solid rgba(60,120,200,0.15);">
-                <p style="color: #D1D9E6; font-size: 0.85em; margin-bottom: 12px; letter-spacing: 1px;">
-                    Мысли
+            <!-- ===== МУЗЫКА ===== -->
+            <div style="text-align: center; margin: 20px 0 30px 0;">
+                <!-- ТРЕУГОЛЬНИК-КНОПКА -->
+                <div onclick="toggleMusic()" style="
+                    display: inline-block;
+                    width: 0;
+                    height: 0;
+                    border-left: 20px solid transparent;
+                    border-right: 20px solid transparent;
+                    border-bottom: 35px solid rgba(60, 120, 200, 0.3);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    filter: drop-shadow(0 0 15px rgba(60, 120, 200, 0.1));
+                    margin: 10px 0;
+                    " onmouseover="this.style.borderBottomColor='rgba(60, 120, 200, 0.6)'" onmouseout="this.style.borderBottomColor='rgba(60, 120, 200, 0.3)'">
+                    
+                    </div>
+                <p style="color: rgba(60, 120, 200, 0.2); font-size: 0.6em; letter-spacing: 3px; margin-top: 5px;">
+                    НАЖМИ
                 </p>
-                
-                <!-- КНОПКА ВКЛ/ВЫКЛ -->
-                <button onclick="toggleMusic()" style="
-                padding: 10px 30px;
-                border-radius: 30px;
-                border: 1px solid rgba(60,120,200,0.2);
-                background: rgba(60,120,200,0.05);
-                color: #D1D9E6;
-                font-size: 0.8em;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                font-family: 'Inter', sans-serif;
-                letter-spacing: 2px;
-                margin-bottom: 15px;
-                    " onmouseover="this.style.background='rgba(60,120,200,0.15)'" onmouseout="this.style.background='rgba(60,120,200,0.05)'">
-                    ▶️
-                </button>
-                <!-- ПЛЕЕР (скрыт по умолчанию) -->
-                <div id="musicPlayer" style="display: none; margin-top: 10px;">
-                    <audio controls style="width: 100%; max-width: 350px; border-radius: 30px; background: #0A0E1A; outline: none;" id="audioPlayer">
-                        <source src="../songs/Tima_Belorusskikh_-_Mysli_81921705.mp3" type="audio/mpeg">
-                        Твой браузер не поддерживает аудио
-                    </audio>
-                </div>
+                <!-- СКРЫТЫЙ ПЛЕЕР -->
+                <audio id="audioPlayer" style="display: none;">
+                    <source src="../songs/trepak.mp3" type="audio/mpeg">
+                    Твой браузер не поддерживает аудио
+                </audio>
             </div>
             <script>
-                function toggleMusic() {
-                const player = document.getElementById('musicPlayer');
+                let isPlaying = false;
                 const audio = document.getElementById('audioPlayer');
-                const button = document.querySelector('button[onclick="toggleMusic()"]');
-                    if (player.style.display === 'none') {
-                        player.style.display = 'block';
-                        button.textContent = '⏸️';
-                        audio.play();
-                    } else {
-                        player.style.display = 'none';
-                        button.textContent = '▶️';
+                const triangle = document.querySelector('[onclick="toggleMusic()"]');
+
+                function toggleMusic() {
+                    if (isPlaying) {
                         audio.pause();
                         audio.currentTime = 0;
+                        isPlaying = false;
+                        triangle.style.borderBottomColor = 'rgba(60, 120, 200, 0.3)';
+                    } else {
+                        audio.play();
+                        isPlaying = true;
+                        triangle.style.borderBottomColor = 'rgba(255, 215, 0, 0.6)';
                     }
                 }
+                
+                // Когда песня закончится — сбрасываем
+                audio.addEventListener('ended', function() {
+                    isPlaying = false;
+                    triangle.style.borderBottomColor = 'rgba(60, 120, 200, 0.3)';
+                });
             </script>
             <div class="letter-divider"></div>
             <div class="letter-text">
